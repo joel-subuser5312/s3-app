@@ -33,13 +33,13 @@ jobs:
     - name: Build React App
       run: npm run build
 
-    # Set up Terraform
+    
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: '1.8.0'  
 
-    # Initialize Terraform
+   
     - name: Terraform Init
       working-directory: ./terraform
       env:
@@ -48,7 +48,7 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: terraform init
 
-    # Terraform Plan
+    
     - name: Terraform Plan
       working-directory: ./terraform
       env:
@@ -57,7 +57,7 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: terraform plan
 
-    # Apply Terraform changes
+
     - name: Terraform Apply
       working-directory: ./terraform
       env:
@@ -66,14 +66,7 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: terraform apply -auto-approve
 
-    # Install AWS CLI (needed for sync)
-    - name: Install AWS CLI
-      run: |
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install
-
-    # Upload React build files to S3
+ 
     - name: Upload React build files to S3
       run: |
         aws s3 sync build/ s3://${{ secrets.BUCKET_NAME }}/ --delete --cache-control "max-age=0,no-cache,no-store,must-revalidate"
