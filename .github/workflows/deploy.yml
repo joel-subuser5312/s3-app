@@ -18,6 +18,9 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Set execute permissions for link-compiler.sh
+      run: chmod +x ./scripts/react-compiler/link-compiler.sh
+      
     - name: Install dependencies
       run: npm install --legacy-peer-deps
       
