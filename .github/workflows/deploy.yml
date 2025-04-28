@@ -20,6 +20,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install --legacy-peer-deps
+      
+    - name: Run link-compiler.sh in Git Bash
+      run: bash ./scripts/react-compiler/link-compiler.sh
 
     - name: Build React App
       run: npm run build
