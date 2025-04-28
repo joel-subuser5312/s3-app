@@ -25,7 +25,7 @@ jobs:
       run: npm install --legacy-peer-deps
 
     - name: Install variant
-      run: npm install invariant
+      run: npm install invariant --legacy-peer-deps
 
     - name: Run link-compiler.sh in Git Bash
       run: bash ./scripts/react-compiler/link-compiler.sh
